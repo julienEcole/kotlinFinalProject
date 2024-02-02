@@ -1,4 +1,4 @@
-package com.example.kotlinfinalproject.ui.gallery
+package com.example.kotlinfinalproject.viewModel.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
