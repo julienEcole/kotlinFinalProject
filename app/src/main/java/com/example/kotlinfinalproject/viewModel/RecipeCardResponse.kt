@@ -8,7 +8,6 @@ data class RecipeCardResponse(
     val url: String,
 )
 {
-    
     fun createRecipeCard(data: JSONObject): RecipeCard {
         return RecipeCard(data.get("label") as String, data.get("images") as String);
     }
