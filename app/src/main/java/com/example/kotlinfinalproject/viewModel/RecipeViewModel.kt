@@ -14,9 +14,9 @@ class RecipeViewModel : ViewModel(){
         val dummyRecipes = listOf<Recipe>()/*listOf(
             Recipe("Recipe 1", "https://example.com/recipe1.jpg"),
             Recipe("Recipe 2", "https://example.com/recipe2.jpg"),
-            Recipe("Recipe 3", "https://example.com/recipe3.jpg")*/ //TOSET
+            Recipe("Recipe 3", "https://example.com/recipe3.jpg") //TOSET
             // Ajoutez d'autres recettes au besoin
-        )
+        )*/
         _recipes.value = dummyRecipes
     }
 }

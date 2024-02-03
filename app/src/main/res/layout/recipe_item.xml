@@ -22,13 +22,13 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageViewRecipe"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/placeholder_image"/>
+            android:src="@drawable/placeholder_image"/>-->
 
         <!-- Autres vues pour afficher les détails de la recette -->
     </LinearLayout>
