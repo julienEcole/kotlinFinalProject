@@ -11,8 +11,8 @@ import org.koin.core.component.get
 class RecipeRepository: KoinComponent {
     private val recipeService: RecipeLocalService = get()
 
-    fun getRandomRecipes(type: Type, random: Boolean): Flowable<RecipeCard> {
-        return Flowable.fromIterable(recipeService.getRandomRecipes())
+    fun getRandomRecipes(type: Type, random: Boolean): Flowable<List<RecipeCard>> {
+        return Flowable.fromArray(recipeService.getRandomRecipes())
             .subscribeOn(Schedulers.io())
     }
 }
