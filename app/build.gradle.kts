@@ -92,4 +92,7 @@ dependencies {
 
     // Json serializer/deserializer
     implementation("com.google.code.gson:gson:2.10") // Serialization to and from JSON
+
+    // CardView widget
+    implementation("androidx.cardview:cardview:1.0.0")
 }
