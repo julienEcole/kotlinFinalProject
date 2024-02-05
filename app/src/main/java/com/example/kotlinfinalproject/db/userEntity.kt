@@ -10,4 +10,5 @@ class userEntity {
         @ColumnInfo(name = "user_name") val userName: String,
         @ColumnInfo(name = "user_last_name") val userLastName: String,
     )
+
 }
