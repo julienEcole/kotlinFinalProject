@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.kotlinfinalproject.R
 import com.example.kotlinfinalproject.model.RecipeCard
 
-class RecipeAdapter(private val recipeCards: List<RecipeCard>) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
+class RecipeCardAdapter(private val recipeCards: List<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder>() {
 
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameTv: TextView

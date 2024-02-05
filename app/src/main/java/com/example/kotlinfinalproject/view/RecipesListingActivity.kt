@@ -1,17 +1,17 @@
 package com.example.kotlinfinalproject
 
-import RecipeAdapter
+import RecipeCardAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfinalproject.di.injectDependencies
-import com.example.kotlinfinalproject.viewModel.RecipeViewModel
+import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipesListingActivity : AppCompatActivity() {
 
-    private val recipeCardsViewModel: RecipeViewModel by viewModel()
+    private val recipeCardsViewModel: RecipeCardViewModel by viewModel()
     private lateinit var recipeCardsRv: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class RecipesListingActivity : AppCompatActivity() {
 
     private fun observeRecipeCardsListing() {
         this.recipeCardsViewModel.recipeCardsData.observe(this@RecipesListingActivity){ recipeCards ->
-            recipeCardsRv.adapter = RecipeAdapter(recipeCards)
+            recipeCardsRv.adapter = RecipeCardAdapter(recipeCards)
             recipeCardsRv.layoutManager = LinearLayoutManager(this)
         }
     }

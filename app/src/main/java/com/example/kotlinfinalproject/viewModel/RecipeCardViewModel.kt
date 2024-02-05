@@ -9,20 +9,10 @@ import com.example.kotlinfinalproject.services.enums.Type
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 
-class RecipeViewModel(private val recipeRepository: RecipeRepository) : ViewModel() {
+class RecipeCardViewModel(private val recipeRepository: RecipeRepository) : ViewModel() {
 
     private val disposeBag = CompositeDisposable();
-//    private val recipeCards : BehaviorSubject<List<RecipeCard>> = BehaviorSubject.createDefault(listOf())
     val recipeCardsData: MutableLiveData<List<RecipeCard>> = MutableLiveData()
-
-//    private fun getFixedSizeOfRandomRecipeCards() {
-//        this.recipeRepository.getRandomRecipes(type=Type.PUBLIC, random=true).subscribe({ recipeCards ->
-//            this.recipeCardsData.onNext(recipeCards)
-//            Log.d("Recipe cards loaded", "Loaded recipe card in getFixedSizeOfRandomRecipeCards")
-//        }, { error ->
-//            Log.d("Error in fuction getFixedSizeOfRandomRecipeCards while fetching recipes data", error.message ?: "Default error message")
-//        }).addTo(disposeBag)
-//    }
 
     init {
         this.getRandomRecipeCards()
