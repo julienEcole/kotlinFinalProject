@@ -27,9 +27,6 @@ class UsersViewModel(
     // Observables used by the view model to get the users infos only
     private val usersData: BehaviorSubject<List<UserData>> = BehaviorSubject.createDefault(listOf())
 
-    // Observable used by the viewmodel to get conversations only
-    private val usersConversations: BehaviorSubject<MutableList<MutableList<MessageData>>> = BehaviorSubject.createDefault(mutableListOf())
-
     // Observable exposed to the view to get the final data
     val completeUsersList: MutableLiveData<List<userDto>> = MutableLiveData()
 
@@ -37,9 +34,10 @@ class UsersViewModel(
 
     init {
         //
-        this.getUsersInfosAndConversation(1, 2)
+        //this.getUsersInfosAndConversation(1, 2)
+        this.getFixedSizeOfRandomUsers(1)
     }
-
+    //Je sais pas a quoi ca sert
     private fun getFixedSizeOfRandomUsers(count: Int) {
         this.usersRepo.getRandomListOfUsers(count).subscribe({ users ->
             //usersLiveData.postValue(users)
@@ -51,7 +49,7 @@ class UsersViewModel(
         }).addTo(disposeBag)
     }
 
-
+/*
     fun getUsersInfos(usersToFetch: Int) {
         this.getConversations(usersToFetch) {
             Log.d("Conversations loaded", "Loaded $usersToFetch random conversations")
@@ -69,4 +67,7 @@ class UsersViewModel(
                 this.disposeBag.add(it)
             }
     }
+
+ */
+
 }
