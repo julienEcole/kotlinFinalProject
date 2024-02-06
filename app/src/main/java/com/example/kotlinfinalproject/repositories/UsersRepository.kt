@@ -1,5 +1,9 @@
 package com.example.kotlinfinalproject.repositories
 
+import com.example.kotlinfinalproject.user_model.UserData
+import com.example.kotlinfinalproject.network.UserApiService
+import io.reactivex.rxjava3.core.Flowable
+
 class UsersRepository (private val userService: UserApiService){
 
     fun getRandomListOfUsers(size: Int): Flowable<List<UserData>> {
