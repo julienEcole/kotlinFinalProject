@@ -1,6 +1,7 @@
 package com.example.kotlinfinalproject.user_model
 
 
+
 data class UserData(
     val id: String,
     val profilePicture: Int,

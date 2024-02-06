@@ -16,6 +16,8 @@ class UsersRepository (private val userService: UserApiService){
             "lastName",
             "date",
             "text",
+            "0606060606",
+            "false"
         ).map {
             it.data
         }
