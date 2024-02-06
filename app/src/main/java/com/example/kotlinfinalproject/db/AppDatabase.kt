@@ -9,7 +9,6 @@ import com.example.kotlinfinalproject.db.entities.userEntity
     entities = [userEntity::class],
     version = 1
 )
-
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun UserDao(): UserDao
