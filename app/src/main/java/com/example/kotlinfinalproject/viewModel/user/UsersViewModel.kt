@@ -1,4 +1,4 @@
-package com.example.kotlinfinalproject.viewModel
+package com.example.kotlinfinalproject.viewModel.user
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
