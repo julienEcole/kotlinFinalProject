@@ -1,18 +1,22 @@
 package com.example.kotlinfinalproject.di.modules
 
 import com.example.kotlinfinalproject.BuildConfig
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 internal val remoteModules = module {
     single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.RECIPE_API_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(get())
             .build()
     }
@@ -21,6 +25,10 @@ internal val remoteModules = module {
         buildOkHttpClientWithDefaultQueryParams()
     }
 
+}
+
+inline fun <reified ApiService> createApiService(retrofit: Retrofit): ApiService {
+    return retrofit.create(ApiService::class.java)
 }
 
 private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {
@@ -42,5 +50,7 @@ private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {
 
     return OkHttpClient.Builder()
         .addInterceptor(defaultQueryParamsInterceptor)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
         .build()
 }
