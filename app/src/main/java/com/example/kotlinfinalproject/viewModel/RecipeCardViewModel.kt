@@ -5,15 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlinfinalproject.model.RecipeCard
 import com.example.kotlinfinalproject.repositories.RecipeRepository
-import com.example.kotlinfinalproject.services.RecipeApiService
-import com.example.kotlinfinalproject.services.RecipeLocalService
 import com.example.kotlinfinalproject.services.enums.Type
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 
 class RecipeCardViewModel(private val recipeRepository: RecipeRepository) : ViewModel() {
     private val disposeBag = CompositeDisposable()
