@@ -1,6 +1,7 @@
 package com.example.kotlinfinalproject.di.modules
 
 import com.example.kotlinfinalproject.BuildConfig
+import com.example.kotlinfinalproject.db.daos.UserDao
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -29,6 +30,10 @@ internal val remoteModules = module {
 
 inline fun <reified ApiService> createApiService(retrofit: Retrofit): ApiService {
     return retrofit.create(ApiService::class.java)
+}
+
+inline fun <reified UserDao> createUserDao(retrofit: Retrofit): UserDao {
+    return retrofit.create(UserDao::class.java)
 }
 
 private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {

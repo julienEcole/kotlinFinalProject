@@ -11,6 +11,16 @@
         <item
             android:id="@+id/recette"
             android:icon="@drawable/ic_menu_gallery"
+<<<<<<< Updated upstream
             android:title="@string/menu_recette" />
+=======
+            android:title="@string/menu_gallery" />
+
+        <item
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/ic_menu_profil"
+            android:title="@string/menu_profil" />
+
+>>>>>>> Stashed changes
     </group>
 </menu>
