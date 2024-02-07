@@ -1,18 +1,22 @@
 package com.example.kotlinfinalproject.repositories
 
 import com.example.kotlinfinalproject.model.RecipeCard
+import com.example.kotlinfinalproject.services.RecipeApiService
 import com.example.kotlinfinalproject.services.RecipeLocalService
 import com.example.kotlinfinalproject.services.enums.Type
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
 
-class RecipeRepository: KoinComponent {
-    private val recipeService: RecipeLocalService = get()
+class RecipeRepository(private val apiService: RecipeApiService) {
+    fun getRandomRecipesAll(type: Type, random: Boolean, q: String): Flowable<List<RecipeCard>> {
+        return this.apiService.getRandomRecipes(type.value, random, q).map {
+                it.hits.map { hit -> hit.recipe.toRecipeCard() }
+            }
+    }
 
-    fun getRandomRecipes(type: Type, random: Boolean): Flowable<List<RecipeCard>> {
-        return Flowable.fromArray(recipeService.getRandomRecipes())
-            .subscribeOn(Schedulers.io())
+    fun getOneRecipe(id: String, type: Type): Flowable<RecipeCard> {
+        return this.apiService.getOneRecipe(id, type.value).map {
+            it.toRecipeCard()
+        }
     }
 }
