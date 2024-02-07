@@ -1,4 +1,4 @@
-package com.example.kotlinfinalproject.view.home
+package com.example.kotlinfinalproject.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlinfinalproject.databinding.FragmentHomeBinding
-import com.example.kotlinfinalproject.viewModel.home.HomeViewModel
+import com.example.kotlinfinalproject.viewModel.HomeViewModel
 
 class HomeFragment : Fragment() {
 
