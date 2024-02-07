@@ -28,7 +28,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/api/recipes/v2/\"")
+            buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
         }
@@ -40,7 +40,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/api/recipes/v2/\"")
+            buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
         }
