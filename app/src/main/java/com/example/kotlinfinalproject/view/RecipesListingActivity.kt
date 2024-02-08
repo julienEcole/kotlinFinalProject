@@ -26,9 +26,9 @@ class RecipesListingActivity : AppCompatActivity() {
     }
 
     private fun observeRecipeCardsListing() {
+        recipeCardsRv.layoutManager = LinearLayoutManager(this)
         this.recipeCardsViewModel.recipeCardsData.observe(this@RecipesListingActivity){ recipeCards ->
             recipeCardsRv.adapter = RecipeCardAdapter(recipeCards)
-            recipeCardsRv.layoutManager = LinearLayoutManager(this)
         }
     }
 
