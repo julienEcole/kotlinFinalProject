@@ -1,4 +1,4 @@
-package com.example.kotlinfinalproject.view.Profil
+package com.example.kotlinfinalproject.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlinfinalproject.databinding.FragmentProfilBinding
-import com.example.kotlinfinalproject.repositories.UsersRepository
-import com.example.kotlinfinalproject.viewModel.user.UserViewModel
+import com.example.kotlinfinalproject.viewModel.UserViewModel
+import com.example.kotlinfinalproject.user_model.UserData
 
 class ProfilFragment : Fragment() {
 
@@ -29,28 +29,24 @@ class ProfilFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize ViewModel
-        userViewModel = ViewModelProvider(this, UserViewModelFactory(UsersRepository())).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        // Observe LiveData
-        userViewModel.randomUserLiveData.observe(viewLifecycleOwner) { user ->
+        // Observe LiveData for userList
+        userViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
             setUserInformation(user)
         }
-
-        // Trigger ViewModel to fetch random user
-        userViewModel.fetchRandomUser()
     }
 
     private fun setUserInformation(user: UserData) {
-        binding.apply {
-            userNameTv.text = user.name
-            userLastnameTv.text = user.lastName
-            userEmailTv.text = user.mail
-            userPhoneTv.text = user.phoneNumber
-        }
+        binding.userLastnameTv.text = user.userLastName
+        binding.userNameTv.text = user.userName
+        binding.userEmailTv.text = user.userMail
+        binding.userPhoneTv.text = user.phoneNumber
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

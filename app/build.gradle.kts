@@ -31,6 +31,7 @@ android {
             buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
+            buildConfigField("String","USER_FAKER_API", "\"https://fakerapi.it/api/v1//\"")
         }
         release {
             isMinifyEnabled = false
@@ -43,8 +44,11 @@ android {
             buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
+            buildConfigField("String","USER_FAKER_API", "\"https://fakerapi.it/api/v1//\"")
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -62,6 +66,7 @@ android {
 dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.room:room-common:2.6.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
 
@@ -79,7 +84,8 @@ dependencies {
 
     // RxKotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
-
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.1")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
     // Koin DI
     implementation("io.insert-koin:koin-core:3.5.0")
     implementation("io.insert-koin:koin-android:3.5.0")

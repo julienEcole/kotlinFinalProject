@@ -3,10 +3,10 @@ package com.example.kotlinfinalproject.user_model
 
 
 data class UserData(
-    val id: Int,
-    val profilePicture: Int,
-    val lastName: String,
-    val name: String,
+    val uid: Int,
+    val profilePicture: String,
+    val userName: String,
+    val userLastName: String,
     val phoneNumber: String,
-    val mail : String
+    val userMail : String
 )

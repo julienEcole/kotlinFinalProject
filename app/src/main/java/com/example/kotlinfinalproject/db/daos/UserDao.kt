@@ -16,10 +16,13 @@ interface UserDao {
     fun getOneUserById(userUid: Long) : userEntity
 
     @Query("SELECT * FROM user ORDER BY RANDOM() LIMIT 1")
-    fun getRandomUser(): userEntity
+    fun getRandomUser(): userEntity?
 
     @Insert
     fun insertNewUser(user: userEntity)
+
+
+    //fun updateUser(user: userEntity)
 
     @Delete
     fun deleteUser(user: userEntity)

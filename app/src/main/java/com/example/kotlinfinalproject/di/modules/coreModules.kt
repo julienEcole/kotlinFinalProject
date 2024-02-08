@@ -5,11 +5,12 @@ import com.example.kotlinfinalproject.repositories.RecipeRepository
 import com.example.kotlinfinalproject.repositories.UsersRepository
 import com.example.kotlinfinalproject.services.RecipeApiService
 import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
-import com.example.kotlinfinalproject.viewModel.user.UserViewModel
+import com.example.kotlinfinalproject.viewModel.UserViewModel
 import org.koin.dsl.module
 
 
 internal val coreModules = module {
+
     //region Api Services
     single { createApiService<RecipeApiService>(get()) }
     single { createUserDao<UserDao>(get())}
@@ -17,12 +18,12 @@ internal val coreModules = module {
 
     //region Respositories
     single { RecipeRepository(get()) }
-    single { UsersRepository(get())}
+    single { UsersRepository(get()) }
     //endregion
 
     //region ViewModels
     single { RecipeCardViewModel(get()) }
-    single { UserViewModel(get())}
+    single { UserViewModel(get()) }
     //endregion
 }
 
