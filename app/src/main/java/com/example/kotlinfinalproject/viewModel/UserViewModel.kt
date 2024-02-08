@@ -11,6 +11,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.kotlinfinalproject.db.AppDatabase
+import com.example.kotlinfinalproject.db.provider.DatabaseProvider
 
 class UserViewModel(private val usersRepo: UsersRepository) : ViewModel() {
     private val disposeBag = CompositeDisposable()

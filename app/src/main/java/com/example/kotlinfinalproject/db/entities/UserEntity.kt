@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user")
-data class userEntity (
+data class UserEntity ( //define the table of the dataBase here
     @PrimaryKey(autoGenerate = true) val uid: Int,
     @ColumnInfo(name = "user_name") val userName: String,
     @ColumnInfo(name = "profilePicture") val profilePicture: String,
