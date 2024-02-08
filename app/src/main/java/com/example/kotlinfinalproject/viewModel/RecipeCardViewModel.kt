@@ -19,11 +19,13 @@ class RecipeCardViewModel(private val recipeRepository: RecipeRepository) : View
     init {
         this.observeRandomRecipeCards()
     }
-    private fun getRandomRecipeCards() {
-        this.recipeRepository.getRandomRecipesAll(type=Type.PUBLIC, random=true, q="anything").subscribe({ recipeCards ->
+    fun getRandomRecipeCards(q: String="anything") {
+        val random : Boolean = q == "anything"
+
+        this.recipeRepository.getRandomRecipesAll(type=Type.PUBLIC, random=random, q=q).subscribe({ recipeCards ->
             this.recipeCardsObserved.onNext(recipeCards)
         }, { error ->
-            Log.d("Error in function getFixedSizeOfRandomRecipeCards while fetching recipes data", error.message ?: "Default error message")
+            Log.e("Error in function getFixedSizeOfRandomRecipeCards while fetching recipes data", error.message ?: "Default error message")
         }).addTo(disposeBag)
     }
     private fun observeRandomRecipeCards() {
