@@ -8,23 +8,24 @@ import com.example.kotlinfinalproject.db.daos.UserDao
 import com.example.kotlinfinalproject.db.entities.UserEntity
 
 @Database(entities = [UserEntity::class], version = 1)  //define the entity used by DAO here
-abstract class AppDatabase : RoomDatabase()   {
-    abstract fun userDao() : UserDao    //add the other DAO in here
-
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
     companion object {
+        @Volatile
         private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
-            if (instance == null) {
-                synchronized(AppDatabase::class) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDatabase::class.java,
-                        "app_database"
-                    ).build()
-                }
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also { instance = it }
             }
-            return instance!!
+        }
+
+        private fun buildDatabase(context: Context): AppDatabase {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "app_database"
+            ).build()
         }
     }
 }
