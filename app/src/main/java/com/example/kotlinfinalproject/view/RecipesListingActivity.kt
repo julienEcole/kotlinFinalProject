@@ -1,7 +1,9 @@
 package com.example.kotlinfinalproject
 
-import RecipeCardAdapter
+import com.example.kotlinfinalproject.view.adapter.RecipeCardAdapter
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,8 @@ class RecipesListingActivity : AppCompatActivity() {
 
     private val recipeCardsViewModel: RecipeCardViewModel by viewModel()
     private lateinit var recipeCardsRv: RecyclerView
+    private lateinit var searchBarEditText: EditText
+    private lateinit var recipeCardAdapter: RecipeCardAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,14 +25,29 @@ class RecipesListingActivity : AppCompatActivity() {
         injectDependencies(this@RecipesListingActivity)
 
         this.recipeCardsRv = findViewById(R.id.recipe_cards_list)
-
+        this.searchBarEditText = findViewById(R.id.search_bar_edit_text)
+        setOnEditListener()
         observeRecipeCardsListing()
     }
 
+    private fun setOnEditListener() {
+        this.searchBarEditText.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH && v.text.isNotBlank()) {
+                v.text?.let {
+                    this.recipeCardsViewModel.getRandomRecipeCards(it.toString())
+                }
+            }
+
+            true
+        }
+    }
+
     private fun observeRecipeCardsListing() {
+        recipeCardsRv.layoutManager = LinearLayoutManager(this)
         this.recipeCardsViewModel.recipeCardsData.observe(this@RecipesListingActivity){ recipeCards ->
-            recipeCardsRv.adapter = RecipeCardAdapter(recipeCards)
-            recipeCardsRv.layoutManager = LinearLayoutManager(this)
+            this.recipeCardAdapter = RecipeCardAdapter(this.recipeCardsViewModel)
+            recipeCardsRv.adapter = this.recipeCardAdapter
+            this.recipeCardAdapter.fillRecipeCards(recipeCards)
         }
     }
 

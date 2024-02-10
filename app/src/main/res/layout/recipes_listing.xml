@@ -8,14 +8,31 @@
   tools:context=".RecipesListingActivity"
   >
 
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recipe_cards_list"
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:itemCount="5"
-    tools:listitem="@layout/recipe_card"
-    android:layout_weight="0.1"
-  />
+    android:layout_height="200dp"
+    android:layout_weight="0.2"
+  >
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="18dp"
+    >
+      <include layout="@layout/search_bar" />
 
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </FrameLayout>
+ <FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:layout_weight="0.1"
+   >
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recipe_cards_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      tools:itemCount="5"
+      tools:listitem="@layout/recipe_card"
+    />
+ </FrameLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
