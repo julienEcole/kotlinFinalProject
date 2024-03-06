@@ -1,5 +1,6 @@
 package com.example.kotlinfinalproject.repositories
 
+import com.example.kotlinfinalproject.model.Recipe
 import com.example.kotlinfinalproject.model.RecipeCard
 import com.example.kotlinfinalproject.services.RecipeApiService
 import com.example.kotlinfinalproject.services.enums.Type
@@ -12,9 +13,9 @@ class RecipeRepository(private val apiService: RecipeApiService) {
             }
     }
 
-    fun getOneRecipe(id: String, type: Type): Flowable<RecipeCard> {
+    fun getOneRecipe(id: String, type: Type): Flowable<Recipe> {
         return this.apiService.getOneRecipe(id, type.value).map {
-            it.toRecipeCard()
+            it.recipe.toRecipe()
         }
     }
 }
