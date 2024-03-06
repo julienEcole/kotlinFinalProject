@@ -1,8 +1,8 @@
 package com.example.kotlinfinalproject.services.dtos
 
 
+import com.example.kotlinfinalproject.model.Recipe
 import com.example.kotlinfinalproject.model.RecipeCard
-import com.google.gson.annotations.SerializedName
 
 data class Recipe(
     val calories: Double,
@@ -16,7 +16,7 @@ data class Recipe(
     val image: String,
     val images: Images,
     val ingredientLines: List<String>,
-    val ingredients: List<Ingredient>,
+    val ingredients: List<Ingredient>?,
     val label: String,
     val mealType: List<String>,
     val shareAs: String,
@@ -32,6 +32,20 @@ data class Recipe(
     val yield: Double
 ) {
     fun toRecipeCard(): RecipeCard {
-        return RecipeCard(label, this.images.tHUMBNAIL.url)
+        return RecipeCard(label, this.uri, this.images.tHUMBNAIL.url)
+    }
+
+    fun toRecipe(): Recipe {
+        return Recipe(
+            this.label,
+            this.uri,
+            this.image,
+            this.ingredients?.map{ ingredient -> ingredient.toIngredient()},
+            this.source,
+            this.dietLabels,
+            this.healthLabels,
+            this.cautions,
+            this.ingredientLines,
+        )
     }
 }

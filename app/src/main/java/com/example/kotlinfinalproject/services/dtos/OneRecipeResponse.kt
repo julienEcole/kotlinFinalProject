@@ -8,8 +8,4 @@ data class OneRecipeResponse(
     @SerializedName("_links")
     val links: Links,
     val recipe: Recipe
-) {
-    fun toRecipeCard(): RecipeCard {
-        return RecipeCard(recipe.label, recipe.images.tHUMBNAIL.url)
-    }
-}
+)

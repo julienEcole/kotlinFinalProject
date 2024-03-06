@@ -1,6 +1,7 @@
 package com.example.kotlinfinalproject.services.dtos
 
 
+import com.example.kotlinfinalproject.model.Ingredient
 import com.google.gson.annotations.SerializedName
 
 data class Ingredient(
@@ -12,4 +13,12 @@ data class Ingredient(
     val quantity: Double,
     val text: String,
     val weight: Double
-)
+) {
+    fun toIngredient(): Ingredient {
+        return Ingredient(
+            this.text,
+            this.quantity,
+            this.measure,
+        )
+    }
+}
