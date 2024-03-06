@@ -13,7 +13,6 @@
     app:cardCornerRadius="8dp"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintLeft_toRightOf="@+id/recipe_detail_timer_card_cv"
     >
     <LinearLayout
       android:layout_width="wrap_content"

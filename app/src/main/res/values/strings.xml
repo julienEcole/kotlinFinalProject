@@ -14,4 +14,8 @@
   <string name="menu_recette">Recette</string>
   <string name="recipe_photo_iv_content_description">Photo of the Finished Dish</string>
   <string name="recipe_detail_timer_icon">Timer Icon</string>
+  <string name="recipe_detail_ingredients_list_title">Instructions:</string>
+  <string name="recipe_detail_ingredient_item_text">• %1$s</string>
+  <string name="recipe_detail_total_nutrients_title">Total Nutrients:</string>
+  <string name="recipe_detail_total_nutrients_item_text">• %1$s: %2$d%3$s</string>
 </resources>
