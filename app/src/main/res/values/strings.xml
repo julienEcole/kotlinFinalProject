@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name"></string>
+  <string name="app_name">Yummy</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="nav_header_title">Android Studio</string>
@@ -12,4 +12,6 @@
   <string name="menu_gallery">Gallery</string>
   <string name="menu_slideshow">Slideshow</string>
   <string name="menu_recette">Recette</string>
+  <string name="recipe_photo_iv_content_description">Photo of the Finished Dish</string>
+  <string name="recipe_detail_timer_icon">Timer Icon</string>
 </resources>
