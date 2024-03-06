@@ -1,5 +1,6 @@
 package com.example.kotlinfinalproject.view.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel, pr
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipeCards[position]
         holder.nameTv.text = recipe.label
+        holder.nameTv.setTextColor(Color.BLACK)
 
         holder.itemView.setOnClickListener {
             recipeClickedHandler.displayRecipeDetails(recipe.getId())
