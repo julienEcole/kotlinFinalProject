@@ -1,17 +1,20 @@
-package com.example.kotlinfinalproject
+package com.example.kotlinfinalproject.view
 
 import com.example.kotlinfinalproject.view.adapter.RecipeCardAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlinfinalproject.R
 import com.example.kotlinfinalproject.di.injectDependencies
+import com.example.kotlinfinalproject.view.adapter.OnRecipeClickedHandler
 import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RecipesListingActivity : AppCompatActivity() {
+class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
 
     private val recipeCardsViewModel: RecipeCardViewModel by viewModel()
     private lateinit var recipeCardsRv: RecyclerView
@@ -45,10 +48,20 @@ class RecipesListingActivity : AppCompatActivity() {
     private fun observeRecipeCardsListing() {
         recipeCardsRv.layoutManager = LinearLayoutManager(this)
         this.recipeCardsViewModel.recipeCardsData.observe(this@RecipesListingActivity){ recipeCards ->
-            this.recipeCardAdapter = RecipeCardAdapter(this.recipeCardsViewModel)
+            this.recipeCardAdapter = RecipeCardAdapter(this.recipeCardsViewModel,this@RecipesListingActivity)
             recipeCardsRv.adapter = this.recipeCardAdapter
             this.recipeCardAdapter.fillRecipeCards(recipeCards)
         }
     }
 
+    override fun displayRecipeDetails(id: String) {
+        Intent(
+            this,
+            RecipeDetailActivity::class.java
+        ).also {
+            this.recipeCardsViewModel.recipeId = id
+            this.recipeCardsViewModel.getRecipeDetails(id)
+            startActivity(it)
+        }
+    }
 }

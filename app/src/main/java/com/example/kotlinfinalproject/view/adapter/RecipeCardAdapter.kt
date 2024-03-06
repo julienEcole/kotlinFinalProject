@@ -12,7 +12,7 @@ import com.example.kotlinfinalproject.R
 import com.example.kotlinfinalproject.model.RecipeCard
 import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
 
-class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel) : RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder>() {
+class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel, private var recipeClickedHandler: OnRecipeClickedHandler) : RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder>() {
 
     private lateinit var recipeCards: MutableList<RecipeCard>
 
@@ -38,6 +38,10 @@ class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel) : 
         val recipe = recipeCards[position]
         holder.nameTv.text = recipe.label
 
+        holder.itemView.setOnClickListener {
+            recipeClickedHandler.displayRecipeDetails(recipe.getId())
+        }
+
         Glide.with(holder.itemView)
             .load(recipe.thumbnailUrl)
             .apply(RequestOptions().override(200, 200))
@@ -58,4 +62,7 @@ class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel) : 
                 ?: mutableListOf()
         }
     }
+}
+interface OnRecipeClickedHandler {
+    fun displayRecipeDetails(id: String)
 }
