@@ -32,12 +32,12 @@ data class Recipe(
     val yield: Double
 ) {
     fun toRecipeCard(): RecipeCard {
-        return RecipeCard(label, this.uri, this.images.tHUMBNAIL.url)
+        return RecipeCard(label.toTitleCase(), this.uri, this.images.tHUMBNAIL.url)
     }
 
     fun toRecipe(): Recipe {
         return Recipe(
-            this.label,
+            this.label.toTitleCase(),
             this.uri,
             this.image,
             this.ingredients?.map{ ingredient -> ingredient.toIngredient()},
@@ -46,6 +46,13 @@ data class Recipe(
             this.healthLabels,
             this.cautions,
             this.ingredientLines,
+            this.calories,
+            this.totalTime,
+            this.totalNutrients.toTotalNutrients()
         )
     }
+}
+
+fun String.toTitleCase(): String {
+    return split(" ").joinToString(" ") { it.replaceFirstChar { char -> if (char.isLowerCase()) char.titlecase() else char.toString() } }
 }

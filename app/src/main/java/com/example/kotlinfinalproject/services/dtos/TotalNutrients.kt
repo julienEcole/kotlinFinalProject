@@ -1,75 +1,90 @@
 package com.example.kotlinfinalproject.services.dtos
 
-
 import com.google.gson.annotations.SerializedName
+import kotlin.reflect.full.memberProperties
 
 data class TotalNutrients(
     @SerializedName("CA")
-    val cA: CA,
+    val cA: Nutrient?,
     @SerializedName("CHOCDF")
-    val cHOCDF: CHOCDF,
+    val cHOCDF: Nutrient?,
     @SerializedName("CHOCDF.net")
-    val cHOCDFNet: CHOCDFNet,
+    val cHOCDFNet: Nutrient?,
     @SerializedName("CHOLE")
-    val cHOLE: CHOLE,
+    val cHOLE: Nutrient?,
     @SerializedName("ENERC_KCAL")
-    val eNERCKCAL: ENERCKCAL,
+    val eNERCKCAL: Nutrient?,
     @SerializedName("FAMS")
-    val fAMS: FAMS,
+    val fAMS: Nutrient?,
     @SerializedName("FAPU")
-    val fAPU: FAPU,
+    val fAPU: Nutrient?,
     @SerializedName("FASAT")
-    val fASAT: FASAT,
+    val fASAT: Nutrient?,
     @SerializedName("FAT")
-    val fAT: FAT,
+    val fAT: Nutrient?,
     @SerializedName("FATRN")
-    val fATRN: FATRN,
+    val fATRN: Nutrient?,
     @SerializedName("FE")
-    val fE: FE,
+    val fE: Nutrient?,
     @SerializedName("FIBTG")
-    val fIBTG: FIBTG,
+    val fIBTG: Nutrient?,
     @SerializedName("FOLAC")
-    val fOLAC: FOLAC,
+    val fOLAC: Nutrient?,
     @SerializedName("FOLDFE")
-    val fOLDFE: FOLDFE,
+    val fOLDFE: Nutrient?,
     @SerializedName("FOLFD")
-    val fOLFD: FOLFD,
+    val fOLFD: Nutrient?,
     @SerializedName("K")
-    val k: K,
+    val k: Nutrient?,
     @SerializedName("MG")
-    val mG: MG,
+    val mG: Nutrient?,
     @SerializedName("NA")
-    val nA: NA,
+    val nA: Nutrient?,
     @SerializedName("NIA")
-    val nIA: NIA,
+    val nIA: Nutrient?,
     @SerializedName("P")
-    val p: P,
+    val p: Nutrient?,
     @SerializedName("PROCNT")
-    val pROCNT: PROCNT,
+    val pROCNT: Nutrient?,
     @SerializedName("RIBF")
-    val rIBF: RIBF,
+    val rIBF: Nutrient?,
     @SerializedName("SUGAR")
-    val sUGAR: SUGAR,
+    val sUGAR: Nutrient?,
     @SerializedName("SUGAR.added")
-    val sUGARAdded: SUGARAdded,
+    val sUGARAdded: Nutrient?,
     @SerializedName("THIA")
-    val tHIA: THIA,
+    val tHIA: Nutrient?,
     @SerializedName("TOCPHA")
-    val tOCPHA: TOCPHA,
+    val tOCPHA: Nutrient?,
     @SerializedName("VITA_RAE")
-    val vITARAE: VITARAE,
+    val vITARAE: Nutrient?,
     @SerializedName("VITB12")
-    val vITB12: VITB12,
+    val vITB12: Nutrient?,
     @SerializedName("VITB6A")
-    val vITB6A: VITB6A,
+    val vITB6A: Nutrient?,
     @SerializedName("VITC")
-    val vITC: VITC,
+    val vITC: Nutrient?,
     @SerializedName("VITD")
-    val vITD: VITD,
+    val vITD: Nutrient?,
     @SerializedName("VITK1")
-    val vITK1: VITK1,
+    val vITK1: Nutrient?,
     @SerializedName("WATER")
-    val wATER: WATER,
+    val wATER: Nutrient?,
     @SerializedName("ZN")
-    val zN: ZN
-)
+    val zN: Nutrient?
+) {
+    fun toTotalNutrients(): List<Nutrient> {
+        val nutrientProperties = this::class.memberProperties
+        val result = mutableListOf<Nutrient>()
+        var nutrientInstance: Nutrient?
+
+        for (nutrientProperty in nutrientProperties) {
+            nutrientInstance = nutrientProperty.getter.call(this) as Nutrient?
+            if (nutrientInstance !== null) {
+                result.add(nutrientInstance)
+            }
+        }
+
+        return result
+    }
+}
