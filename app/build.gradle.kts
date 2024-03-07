@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.kotlinfinalproject"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -85,6 +85,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    //Splash screen
+    implementation("androidx.core:core-splashscreen:1.0.0-alpha01")
 
     // RxKotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")

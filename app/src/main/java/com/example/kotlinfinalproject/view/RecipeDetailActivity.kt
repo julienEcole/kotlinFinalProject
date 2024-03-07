@@ -31,11 +31,11 @@ class RecipeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recipe_detail)
 
-        this.initViews()
+        this.bindViews()
         this.observeCardDetails()
     }
 
-    private fun initViews() {
+    private fun bindViews() {
         this.photoIv = findViewById(R.id.recipe_detail_photo_iv)
         this.titleTv = findViewById(R.id.recipe_detail_label_tv)
         this.prepTimeTv = findViewById(R.id.recipe_detail_timer_time_tv)
@@ -57,7 +57,7 @@ class RecipeDetailActivity : AppCompatActivity() {
     private fun fillRecipeWithData() {
         Glide.with(this@RecipeDetailActivity)
             .load(this.recipe.imageUrl)
-            .placeholder(R.drawable.recipe_photo)
+            .placeholder(R.drawable.pot)
             .into(this@RecipeDetailActivity.photoIv)
         this.titleTv.text = this.recipe.label
 
