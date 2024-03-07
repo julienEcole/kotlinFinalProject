@@ -17,8 +17,6 @@ import androidx.room.Room
 import com.example.kotlinfinalproject.databinding.ActivityMainBinding
 import com.example.kotlinfinalproject.db.AppDatabase
 import com.example.kotlinfinalproject.db.provider.DatabaseProvider
-import com.example.kotlinfinalproject.di.injectionModuleDependencies
-import com.example.kotlinfinalproject.di.parseAndInjectionConfiguration
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,8 +35,8 @@ class MainActivity : AppCompatActivity() {
         //end of database setup
 
 
-        parseAndInjectionConfiguration()
-        injectionModuleDependencies(this)
+//        parseAndInjectionConfiguration()
+//        injectionModuleDependencies(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater) // Move this line up
         setContentView(binding.root)
