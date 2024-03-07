@@ -24,12 +24,12 @@ internal val remoteModules = module {
     single {
         buildOkHttpClientWithDefaultQueryParams()
     }
-
 }
 
 inline fun <reified ApiService> createApiService(retrofit: Retrofit): ApiService {
     return retrofit.create(ApiService::class.java)
 }
+
 
 private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {
     val defaultQueryParamsInterceptor = Interceptor { chain ->

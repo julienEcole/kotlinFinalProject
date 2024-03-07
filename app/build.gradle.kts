@@ -3,6 +3,7 @@ import com.android.testing.utils.isTvOrAutoDevice
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -31,6 +32,7 @@ android {
             buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
+            buildConfigField("String","USER_FAKER_API", "\"https://fakerapi.it/api/v1//\"")
         }
         release {
             isMinifyEnabled = false
@@ -43,8 +45,11 @@ android {
             buildConfigField("String","RECIPE_API_BASE_URL", "\"https://api.edamam.com/\"")
             buildConfigField("String","RECIPE_API_APP_ID", "\"237b9e15\"")
             buildConfigField("String","RECIPE_API_APP_KEY", "\"f19a85c6f9416cbe34b86cf0c8cf5f69\"")
+            buildConfigField("String","USER_FAKER_API", "\"https://fakerapi.it/api/v1//\"")
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -62,17 +67,20 @@ android {
 dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.room:room-common:2.6.1")
+    implementation( "androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1") // Pour Kotlin
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
 
-    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -80,7 +88,8 @@ dependencies {
 
     // RxKotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
-
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.1")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
     // Koin DI
     implementation("io.insert-koin:koin-core:3.5.0")
     implementation("io.insert-koin:koin-android:3.5.0")

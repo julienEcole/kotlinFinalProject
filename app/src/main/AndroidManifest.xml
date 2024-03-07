@@ -20,6 +20,10 @@
           android:exported="false" />
 
         <activity
+          android:name=".view.UserProfileActivity"
+          android:exported="false" />
+
+        <activity
             android:name=".view.RecipesListingActivity"
             android:exported="true"
             android:theme="@style/Theme.KotlinFinalProject.NoActionBar">

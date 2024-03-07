@@ -8,9 +8,16 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
+
         <item
             android:id="@+id/recette"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_recette" />
+
+        <item
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_profil" />
+
     </group>
 </menu>
