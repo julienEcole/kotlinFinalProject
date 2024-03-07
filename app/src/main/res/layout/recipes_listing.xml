@@ -23,8 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/android_user_profile_icon"
-        android:paddingTop="8dp"
+        android:paddingTop="0dp"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:contentDescription="@string/recipes_listing_profile_avatar_content_description"
         android:id="@+id/recipes_listing_user_profile_iv"
       />
       <include layout="@layout/search_bar" />
