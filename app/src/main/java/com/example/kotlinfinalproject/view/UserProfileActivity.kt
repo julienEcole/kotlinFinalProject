@@ -24,7 +24,6 @@ class UserProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_profil)
 
-        injectDependencies(this)
         this.bindViews()
         this.observeUserData()
     }
