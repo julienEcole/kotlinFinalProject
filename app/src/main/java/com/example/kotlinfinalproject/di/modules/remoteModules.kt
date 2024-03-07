@@ -1,13 +1,10 @@
 package com.example.kotlinfinalproject.di.modules
 
 import com.example.kotlinfinalproject.BuildConfig
-import com.example.kotlinfinalproject.db.daos.UserDao
-import com.example.kotlinfinalproject.di.FakeJsonConf
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -27,35 +24,12 @@ internal val remoteModules = module {
     single {
         buildOkHttpClientWithDefaultQueryParams()
     }
-
-    single(named(fakeApiRetrofitClient)) {
-        createRetrofitClient(get(), get<FakeJsonConf>().baseUrl)
-    }
 }
 
 inline fun <reified ApiService> createApiService(retrofit: Retrofit): ApiService {
     return retrofit.create(ApiService::class.java)
 }
 
-inline fun <reified UserDao> createUserDao(retrofit: Retrofit): UserDao {
-    return retrofit.create(UserDao::class.java)
-}
-
-//user faker part
-
-fun createRetrofitClient(okHttpClient: OkHttpClient, baseUrl: String): Retrofit {
-    val gsonConverter =
-        GsonConverterFactory.create(
-            GsonBuilder().setLenient().create()
-        )
-
-    return Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .client(okHttpClient)
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .addConverterFactory(gsonConverter)
-        .build()
-}
 
 private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {
     val defaultQueryParamsInterceptor = Interceptor { chain ->
@@ -80,9 +54,3 @@ private fun buildOkHttpClientWithDefaultQueryParams(): OkHttpClient {
         .readTimeout(20, TimeUnit.SECONDS)
         .build()
 }
-
-
-
-const val fakeApiRetrofitClient = "fakeApiRetrofitClient"
-
-

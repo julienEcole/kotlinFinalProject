@@ -2,18 +2,16 @@ package com.example.kotlinfinalproject.repositories
 
 import com.example.kotlinfinalproject.db.daos.UserDao
 import com.example.kotlinfinalproject.db.entities.UserEntity
-import com.example.kotlinfinalproject.user_model.UserData
+import com.example.kotlinfinalproject.model.User
 import io.reactivex.rxjava3.core.Single
 
 class UsersRepository (private val userDao: UserDao){
 
-    val User = getRandomUser()  //bad practice to change after
-
-    fun getRandomUser(): Single<UserData> {
+    fun getRandomUser(): Single<User> {
         val userCollected: UserEntity? = userDao.getRandomUser()
         return if (userCollected is UserEntity) {
             Single.just(
-                UserData(
+                User(
                     userCollected.uid,
                     userCollected.profilePicture,
                     userCollected.userName,
@@ -24,7 +22,7 @@ class UsersRepository (private val userDao: UserDao){
             )
         } else {
             Single.just(
-                UserData(
+                User(
                     uid = 1,
                     profilePicture = "machin.png",
                     userName = "Doe",
