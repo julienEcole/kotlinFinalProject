@@ -3,7 +3,7 @@ import com.android.testing.utils.isTvOrAutoDevice
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt") version "1.9.22"
+    id("kotlin-kapt")
 }
 
 android {
