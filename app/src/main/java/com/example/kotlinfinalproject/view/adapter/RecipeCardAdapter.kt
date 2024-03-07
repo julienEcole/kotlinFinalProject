@@ -1,3 +1,6 @@
+package com.example.kotlinfinalproject.view.adapter
+
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +11,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.kotlinfinalproject.R
 import com.example.kotlinfinalproject.model.RecipeCard
+import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
 
-class RecipeCardAdapter(private val recipeCards: List<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder>() {
+class RecipeCardAdapter(private val recipeCardViewModel: RecipeCardViewModel, private var recipeClickedHandler: OnRecipeClickedHandler) : RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder>() {
+
+    private lateinit var recipeCards: MutableList<RecipeCard>
+
+    init {
+        this.fillRecipeCards()
+    }
 
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameTv: TextView
@@ -28,6 +38,11 @@ class RecipeCardAdapter(private val recipeCards: List<RecipeCard>) : RecyclerVie
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipeCards[position]
         holder.nameTv.text = recipe.label
+        holder.nameTv.setTextColor(Color.BLACK)
+
+        holder.itemView.setOnClickListener {
+            recipeClickedHandler.displayRecipeDetails(recipe.getId())
+        }
 
         Glide.with(holder.itemView)
             .load(recipe.thumbnailUrl)
@@ -38,5 +53,18 @@ class RecipeCardAdapter(private val recipeCards: List<RecipeCard>) : RecyclerVie
     override fun getItemCount(): Int {
         return recipeCards.size
     }
-}
 
+    fun fillRecipeCards(newRecipeCards: List<RecipeCard> = listOf()) {
+        if (newRecipeCards.isNotEmpty()) {
+            this.recipeCards = newRecipeCards.toMutableList()
+        } else {
+            this.recipeCards = this.recipeCardViewModel
+                .recipeCardsData.value
+                ?.toMutableList()
+                ?: mutableListOf()
+        }
+    }
+}
+interface OnRecipeClickedHandler {
+    fun displayRecipeDetails(id: String)
+}

@@ -16,13 +16,15 @@
         android:theme="@style/Theme.KotlinFinalProject"
         tools:targetApi="31">
         <activity
-            android:name=".RecipesListingActivity"
+          android:name=".view.RecipeDetailActivity"
+          android:exported="false" />
+
+        <activity
+            android:name=".view.RecipesListingActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.KotlinFinalProject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
