@@ -48,7 +48,7 @@ class UserProfileActivity : AppCompatActivity() {
         this.userEmailTv.text = user.userMail
         this.userPhoneTv.text = user.phoneNumber
         Glide.with(this)
-            .load(R.drawable.recipe_card_example_image) // Replace "your_image" with the name of your drawable resource
+            .load(R.drawable.vithushan) // Replace "your_image" with the name of your drawable resource
             .into(this.userPictureIv)
     }
 }
