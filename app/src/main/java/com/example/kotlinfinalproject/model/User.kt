@@ -1,8 +1,8 @@
-package com.example.kotlinfinalproject.user_model
+package com.example.kotlinfinalproject.model
 
 
 
-data class UserData(
+data class User(
     val uid: Int,
     val profilePicture: String,
     val userName: String,
