@@ -14,6 +14,7 @@ import com.example.kotlinfinalproject.di.injectDependencies
 import com.example.kotlinfinalproject.view.adapter.OnRecipeClickedHandler
 import com.example.kotlinfinalproject.viewModel.RecipeCardViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
 
@@ -25,6 +26,7 @@ class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.recipes_listing)
 
         injectDependencies(this@RecipesListingActivity)
@@ -48,7 +50,7 @@ class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
     }
 
     private fun setOnEditListener() {
-        this.searchBarEditText.setOnEditorActionListener { v, actionId, _ ->
+        return this.searchBarEditText.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH && v.text.isNotBlank()) {
                 v.text?.let {
                     this.recipeCardsViewModel.getRandomRecipeCards(it.toString())

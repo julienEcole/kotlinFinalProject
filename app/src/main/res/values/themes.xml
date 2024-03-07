@@ -12,6 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="postSplashScreenTheme">@style/Theme.KotlinFinalProject</item>
+    </style>
+
+    <style name="KotlinFinalProject.SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="android:windowSplashScreenBackground">@drawable/splash_screen</item> <!-- Define splash screen drawable -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen</item> <!-- Define splash screen drawable -->
+        <item name="android:windowSplashScreenAnimationDuration">2000</item> <!-- Specify duration in milliseconds -->
+        <item name="postSplashScreenTheme">@style/Theme.KotlinFinalProject</item>
     </style>
 
     <style name="Theme.KotlinFinalProject.NoActionBar">
