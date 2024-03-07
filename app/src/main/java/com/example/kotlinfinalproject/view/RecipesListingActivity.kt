@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
     private lateinit var recipeCardsRv: RecyclerView
     private lateinit var searchBarEditText: EditText
     private lateinit var recipeCardAdapter: RecipeCardAdapter
+    private lateinit var userProfileIv: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +29,22 @@ class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
 
         injectDependencies(this@RecipesListingActivity)
 
+        this.bindViews()
+        this.setOnEditListener()
+        this.setOnClickListener()
+        this.observeRecipeCardsListing()
+    }
+
+    private fun bindViews() {
         this.recipeCardsRv = findViewById(R.id.recipe_cards_list)
         this.searchBarEditText = findViewById(R.id.search_bar_edit_text)
-        setOnEditListener()
-        observeRecipeCardsListing()
+        this.userProfileIv = findViewById(R.id.recipes_listing_user_profile_iv)
+    }
+
+    private fun setOnClickListener() {
+        this.userProfileIv.setOnClickListener {
+            this.displayUserProfile()
+        }
     }
 
     private fun setOnEditListener() {
@@ -61,6 +75,15 @@ class RecipesListingActivity : AppCompatActivity(), OnRecipeClickedHandler {
         ).also {
             this.recipeCardsViewModel.recipeId = id
             this.recipeCardsViewModel.getRecipeDetails(id)
+            startActivity(it)
+        }
+    }
+
+    private fun displayUserProfile() {
+        Intent(
+            this,
+            UserProfileActivity::class.java
+        ).also {
             startActivity(it)
         }
     }

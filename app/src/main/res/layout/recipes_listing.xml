@@ -25,6 +25,7 @@
         android:src="@drawable/android_user_profile_icon"
         android:paddingTop="8dp"
         android:paddingStart="8dp"
+        android:id="@+id/recipes_listing_user_profile_iv"
       />
       <include layout="@layout/search_bar" />
 
