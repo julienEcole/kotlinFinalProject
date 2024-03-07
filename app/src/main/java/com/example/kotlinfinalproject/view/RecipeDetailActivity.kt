@@ -67,13 +67,13 @@ class RecipeDetailActivity : AppCompatActivity() {
     }
 
     private fun fillOverviewData() {
-        val prepTime = if (this.recipe.prepTime === null) "All the time you need!" else "${ceil(this.recipe.prepTime!!).toInt()} Minutes"
+        val prepTime = if (this.recipe.prepTime === null || this.recipe.prepTime!! == 0.0) "Depends!" else "${ceil(this.recipe.prepTime!!).toInt()} Mins."
         this.prepTimeTv.text = prepTime
 
         val numIngredients = if (this.recipe.ingredients === null || this.recipe.ingredients!!.isEmpty()) {
             "None hehe"
         } else {
-            "${this.recipe.ingredients!!.count()} Ingredients"
+            "${this.recipe.ingredients!!.count()} Ingr."
         }
         this.numIngredientsTv.text = numIngredients
 
